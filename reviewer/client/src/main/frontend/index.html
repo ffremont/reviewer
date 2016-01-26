@@ -1,20 +1,69 @@
 <!doctype html>
 <html lang="fr">
+
 <head>
-  <meta charset="utf-8">
+    <meta charset="utf-8">
 
-  <title>Code reviewer</title>
-  <meta name="author" content="Florent FREMONT">
+    <title>Code reviewer</title>
+    <meta name="author" content="Florent FREMONT">
 
-  <link rel="stylesheet" href="bootstrap-3.3.6-dist/css/bootstrap.yeti.min.css">
-
+    <link rel="stylesheet" href="bootstrap-3.3.6-dist/css/bootstrap.yeti.min.css">
+    <link rel="stylesheet" href="angular-tree-control-0.2.23/css/tree-control.css">
+    <link rel="stylesheet" href="angular-tree-control-0.2.23/css/tree-control-attribute.css">
+    <link rel="stylesheet" href="ng-tags-input_3.0.0.min/ng-tags-input.min.css">
+    <link rel="stylesheet" href="prettify/prettify.css">
+    <link rel="stylesheet" href="css/app.css">
 </head>
 
-<body>
-    hello world !
-    
-  <script src="angular-1.4.8/angular.min.js"></script>
-  
-  <script src="app/all.js"></script>
+<body ng-app="reviewer">
+    <!-- header -->
+    <nav class="navbar navbar-inverse navbar-fixed-top" ng-controller="HeaderCtrl as headerCtrl">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <a class="navbar-brand" href="/">
+                    Reviewer
+                </a>
+            </div>
+
+            <button title="Exporer le lien" type="button" class="btn btn-default navbar-right navbar-btn">
+                <span class="glyphicon glyphicon-link" aria-hidden="true"></span>
+            </button>
+
+            <button type="button" class="btn btn-warning navbar-right navbar-btn" ng-click="headerCtrl.onClickChangePatch()">
+                <span class="glyphicon glyphicon-upload"></span> Charger un patch
+            </button>
+        </div>
+    </nav>
+
+    <div class="app-body container-fluid" ng-controller="BodyCtrl as bodyCtrl">
+        <h2>{{bodyCtrl.current.filename}}</h2>
+
+        <tags-input ng-model="bodyCtrl.tags" placeholder="Ajouter un tag">
+            <auto-complete source="bodyCtrl.searchTags($query)" min-length="0"></auto-complete>
+        </tags-input>
+
+
+        <div class="vertical-layout">
+            <div class="left" ng-include="'app/explorer/explorer.html'" ng-controller="ExplorerCtrl as explorerCtrl"></div>
+            <div class="right" ng-include="'app/code/code.html'" ng-controller="CodeCtrl as codeCtrl"></div>
+        </div>
+
+        <!--div class="views" ng-view></div-->
+
+    </div>
+
+
+
+    <script src="angular-1.4.8/angular.min.js"></script>
+    <!-- dépendances angular -->
+    <script src="angular-1.4.8/angular-route.min.js"></script>
+    <script src="angular-tree-control-0.2.23/angular-tree-control.js"></script>
+    <script src="ng-tags-input_3.0.0.min/ng-tags-input.min.js"></script>
+    <script src="ui.bootstrap/ui-bootstrap-tpls-1.1.0.min.js"></script>
+    <script src="highlight/highlight.min.js"></script>
+    <script src="angular-highlightjs-0.5.1/build/angular-highlightjs.js"></script>
+
+    <script src="app/all.js"></script>
 </body>
+
 </html>

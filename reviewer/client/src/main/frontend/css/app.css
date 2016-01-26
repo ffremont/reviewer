@@ -1,0 +1,52 @@
+.app-body {
+    margin-top: 45px;
+}
+
+.navbar > .container-fluid > * {
+    margin-right: 5px;
+}
+
+
+/** 
+* Layout
+*/
+
+.vertical-layout > div {
+    display: inline-block;
+}
+
+.vertical-layout > .left {
+    width: 400px;
+    float: left;
+}
+
+.vertical-layout > .right {
+    width: calc(100% - 404px);
+    float: right;
+}
+
+
+/**
+* fix tags
+*/
+
+tags-input .tags .tag-item,
+tags-input .tags .tag-item .remove-button {
+    color: white;
+    background: #3DB5D8;
+    border: 0px;
+}
+
+tags-input .tags .input {
+    padding: 3px;
+}
+
+tags-input .tags .tag-item.selected {
+    background: #008CBA;
+}
+
+tags-input .tags {
+    padding: 3px;
+    box-shadow: none;
+    border: 1px solid #E3DADA;
+}
